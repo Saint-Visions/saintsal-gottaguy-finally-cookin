@@ -1,0 +1,1 @@
+{"version":3,"file":"relativeImportPath.js","sourceRoot":"","sources":["../../../src/render/common/relativeImportPath.ts"],"names":[],"mappings":";;;;;AAAA,8CAAuB;AAEV,QAAA,kBAAkB,GAAG,UAAC,IAAY,EAAE,EAAU;IACzD,IAAM,YAAY,GAAG,cAAI,CAAC,QAAQ,CAAC,IAAI,EAAE,EAAE,CAAC,CAAA;IAC5C,OAAO,YAAY,CAAC,CAAC,CAAC,KAAK,GAAG,CAAC,CAAC,CAAC,YAAY,CAAC,CAAC,CAAC,OAAK,YAAc,CAAA;AACrE,CAAC,CAAA"}
