@@ -24,9 +24,7 @@
     ".css": "text/css"
   },
   "forwardingGateway": {
-    "allowedForwardedHosts": ["builder.io", "cdn.builder.io"],
-    "requiredHeaders": {
-      "X-Azure-FDID": "*"
+        "allowedForwardedHosts": ["builder.io", "cdn.builder.io"]
+      }
     }
-  }
-}
+
