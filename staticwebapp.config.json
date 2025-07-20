@@ -1,0 +1,33 @@
+{
+  "routes": [
+    {
+      "route": "/api/*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*", "/api/*"]
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Content-Security-Policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.builder.io https://*.builder.io https://*.buildersdk.com data: blob:; img-src 'self' https: data: blob:; media-src 'self' https: data: blob:"
+  },
+  "mimeTypes": {
+    ".json": "application/json",
+    ".js": "application/javascript",
+    ".css": "text/css"
+  },
+  "forwardingGateway": {
+    "allowedForwardedHosts": ["builder.io", "cdn.builder.io"],
+    "requiredHeaders": {
+      "X-Azure-FDID": "*"
+    }
+  }
+}

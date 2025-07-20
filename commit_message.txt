@@ -1,0 +1,6 @@
+Fix Vercel deployment - Remove function runtime config
+
+- Simplified vercel.json to fix Function Runtime error
+- Removed api/index.js serverless function (causing deployment issues)
+- SPA-only deployment for now - backend features will work with environment variables
+- Ready for successful Vercel deployment

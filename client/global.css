@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=D-DIN:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    /* SaintVisionAI Light Theme */
+    --background: 0 0% 98%;
+    --foreground: 205 19% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 205 19% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 205 19% 7%;
+
+    --primary: 51 100% 50%;
+    --primary-foreground: 205 19% 7%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 205 19% 7%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 51 100% 50%;
+    --accent-foreground: 205 19% 7%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 51 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary-foreground: 205 19% 7%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 51 100% 50%;
+
+    /* SaintVisionAI Brand Variables */
+    --saintvision-gold: 51 100% 50%;
+    --saintvision-charcoal: 205 19% 7%;
+    --saintvision-gradient: linear-gradient(135deg, #ffd700 0%, #e6c200 100%);
+  }
+
+  .dark {
+    /* SaintVisionAI Dark Theme */
+    --background: 205 19% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 205 19% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 205 19% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 51 100% 50%;
+    --primary-foreground: 205 19% 7%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 51 100% 50%;
+    --accent-foreground: 205 19% 7%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 51 100% 50%;
+
+    --sidebar-background: 205 19% 7%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary-foreground: 205 19% 7%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 51 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* SaintVisionAI Brand Components */
+  .saintvision-gradient {
+    background: linear-gradient(135deg, #ffd700 0%, #e6c200 100%);
+  }
+
+  .saintvision-gradient-text {
+    background: linear-gradient(135deg, #ffd700 0%, #e6c200 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .saintvision-glow {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .saintvision-glow-strong {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  }
+
+  .saintvision-glow-soft {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  }
+
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass-morphism {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+
+  /* Circuit Board Pattern */
+  .circuit-pattern {
+    background-image: radial-gradient(
+        circle at 25px 25px,
+        #ffd700 2px,
+        transparent 2px
+      ),
+      radial-gradient(circle at 75px 75px, #ffd700 2px, transparent 2px);
+    background-size: 100px 100px;
+    background-position: 0 0, 50px 50px;
+  }
+
+  .dark .circuit-pattern {
+    background-image: radial-gradient(
+        circle at 25px 25px,
+        rgba(255, 215, 0, 0.3) 2px,
+        transparent 2px
+      ),
+      radial-gradient(
+        circle at 75px 75px,
+        rgba(255, 215, 0, 0.3) 2px,
+        transparent 2px
+      );
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-dialien {
+    font-family: "D-DIN", "Inter", sans-serif;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+
+  .font-dropline {
+    font-family: "Inter", sans-serif;
+    font-weight: 100;
+    letter-spacing: 0.25em;
+    text-transform: none;
+    font-style: normal;
+  }
+}

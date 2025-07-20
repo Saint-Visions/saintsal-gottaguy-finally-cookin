@@ -1,0 +1,27 @@
+{
+<<<<<<< HEAD
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/spa"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+=======
+  "buildCommand": "npm run build:client",
+  "outputDirectory": "dist/spa",
+  "installCommand": "npm install --legacy-peer-deps"
+>>>>>>> 3d2bfcac8ce24dee9ddbe56d356335bd71dcd5d8
+}

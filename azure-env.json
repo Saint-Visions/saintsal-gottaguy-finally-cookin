@@ -1,0 +1,15 @@
+{
+  "environmentVariables": {
+    "VITE_BUILDER_API_KEY": "065997bd13e4442e888a06852fcd61ba",
+    "BUILDER_API_KEY": "065997bd13e4442e888a06852fcd61ba",
+    "BUILDER_PROJECT_ID": "779c6bcb98b240aeb7c8df3177f97ce0",
+    "BUILDER_ENVIRONMENT": "mystic-nest"
+  },
+  "secrets": {
+    "TWILIO_ACCOUNT_SID": "your-twilio-sid",
+    "TWILIO_AUTH_TOKEN": "your-twilio-token", 
+    "TWILIO_PHONE": "your-twilio-number",
+    "OPERATOR_PHONE": "your-operator-number",
+    "GHL_STAGE_WEBHOOK": "your-ghl-webhook-url"
+  }
+}
