@@ -24,7 +24,6 @@
     ".css": "text/css"
   },
   "forwardingGateway": {
-        "allowedForwardedHosts": ["builder.io", "cdn.builder.io"]
-      }
-    }
-
+    "allowedForwardedHosts": ["builder.io", "cdn.builder.io"]
+  }
+}
