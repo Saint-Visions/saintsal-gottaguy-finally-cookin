@@ -70,7 +70,7 @@ export default async function handler(req: Request, res: Response) {
       status: agent.status,
       owner: {
         id: agent.user_id,
-        name: agent.users?.name || "Agent Owner",
+        name: "Agent Owner",
       },
       subdomain: agent.subdomain,
       accessUrl: agent.access_url,

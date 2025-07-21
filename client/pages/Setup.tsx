@@ -142,14 +142,25 @@ export default function Setup() {
   };
 
   const handleArrayToggle = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: prev[field as keyof typeof prev].includes(value)
-        ? (prev[field as keyof typeof prev] as string[]).filter(
-            item => item !== value,
-          )
-        : [...(prev[field as keyof typeof prev] as string[]), value],
-    }));
+    setFormData(prev => {
+      const currentValue = prev[field as keyof typeof prev];
+
+      // Ensure we're working with an array
+      if (Array.isArray(currentValue)) {
+        return {
+          ...prev,
+          [field]: currentValue.includes(value)
+            ? currentValue.filter(item => item !== value)
+            : [...currentValue, value],
+        };
+      }
+
+      // If not an array, initialize as array with the value
+      return {
+        ...prev,
+        [field]: [value],
+      };
+    });
   };
 
   const isStepValid = () => {
@@ -174,7 +185,7 @@ export default function Setup() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(16, 22, 28, 0.98) 0%, rgba(16, 22, 28, 0.95) 100%), 
+          backgroundImage: `linear-gradient(135deg, rgba(16, 22, 28, 0.98) 0%, rgba(16, 22, 28, 0.95) 100%),
                            url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80')`,
         }}
       ></div>

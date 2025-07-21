@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16",
+  apiVersion: "2025-06-30.basil",
 });
 
 interface ProvisioningData {
@@ -27,8 +27,8 @@ export async function handleStripeWebhook(req: Request, res: Response) {
       process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (err) {
-    console.log(`❌ Webhook signature verification failed:`, err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+    console.log(`❌ Webhook signature verification failed:`, (err as any)?.message);
+    return res.status(400).send(`Webhook Error: ${(err as any)?.message}`);
   }
 
   console.log(`✅ Stripe webhook received: ${event.type}`);

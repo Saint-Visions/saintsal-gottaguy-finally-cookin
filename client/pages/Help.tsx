@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -147,7 +148,7 @@ export default function Help() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(16, 22, 28, 0.98) 0%, rgba(16, 22, 28, 0.95) 100%), 
+          backgroundImage: `linear-gradient(135deg, rgba(16, 22, 28, 0.98) 0%, rgba(16, 22, 28, 0.95) 100%),
                            url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
         }}
       ></div>
@@ -173,30 +174,32 @@ export default function Help() {
         </div>
 
         <div className="hidden md:flex items-center space-x-8">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-white/80 hover:text-gold-300 transition-colors"
           >
             Home
-          </a>
-          <a
-            href="/dashboard"
+          </Link>
+          <Link
+            to="/dashboard"
             className="text-white/80 hover:text-gold-300 transition-colors"
           >
             Dashboard
-          </a>
-          <a
-            href="/pricing"
+          </Link>
+          <Link
+            to="/pricing"
             className="text-white/80 hover:text-gold-300 transition-colors"
           >
             Pricing
-          </a>
-          <Button
-            variant="outline"
-            className="bg-gold-500 border-gold-500 text-charcoal-900 hover:bg-gold-400 hover:text-charcoal-900"
-          >
-            Sign In
-          </Button>
+          </Link>
+          <Link to="/signin">
+            <Button
+              variant="outline"
+              className="bg-gold-500 border-gold-500 text-charcoal-900 hover:bg-gold-400 hover:text-charcoal-900"
+            >
+              Sign In
+            </Button>
+          </Link>
         </div>
       </nav>
 

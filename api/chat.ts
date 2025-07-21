@@ -74,7 +74,7 @@ export default async function handler(req: Request, res: Response) {
       const escalationResult = await triggerEscalation(
         chatRequest,
         agent,
-        escalationCheck.reason,
+        escalationCheck.reason || "System-triggered escalation",
       );
 
       return res.json({

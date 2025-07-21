@@ -252,7 +252,7 @@ export class SaintSalCRMActions {
     } catch (error) {
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
         message: "Failed to create contact in CRM",
       };
     }
@@ -282,7 +282,7 @@ export class SaintSalCRMActions {
     } catch (error) {
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
       };
     }
   }
@@ -305,7 +305,7 @@ export class SaintSalCRMActions {
     } catch (error) {
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
       };
     }
   }

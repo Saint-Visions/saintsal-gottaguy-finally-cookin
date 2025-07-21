@@ -6,24 +6,24 @@
     },
     {
       "route": "/*",
-      "rewrite": "/index.html"
+      "serve": "/index.html",
+      "statusCode": 200
     }
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*", "/api/*"]
-  },
-  "globalHeaders": {
-    "X-Content-Type-Options": "nosniff",
-    "X-Frame-Options": "DENY",
-    "Content-Security-Policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.builder.io https://*.builder.io https://*.buildersdk.com data: blob:; img-src 'self' https: data: blob:; media-src 'self' https: data: blob:"
+    "exclude": ["/api/*", "/_next/*", "/favicon.ico", "/robots.txt"]
   },
   "mimeTypes": {
     ".json": "application/json",
-    ".js": "application/javascript",
-    ".css": "text/css"
+    ".js": "text/javascript",
+    ".css": "text/css",
+    ".html": "text/html"
   },
-  "forwardingGateway": {
-    "allowedForwardedHosts": ["builder.io", "cdn.builder.io"]
+  "globalHeaders": {
+    "cache-control": "no-cache"
+  },
+  "platform": {
+    "apiRuntime": "node:18"
   }
 }

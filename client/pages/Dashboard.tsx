@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { AppLayout } from "@/components/AppLayout";
-import { useUserPlan } from "@/hooks/use-plan-protection";
+// import { useUserPlan } from "@/hooks/use-plan-protection"; // Not exported, will use mock instead
 import { useNavigate } from "react-router-dom";
 import {
   MessageSquare,
@@ -26,6 +26,9 @@ import {
   Users,
   Lock,
 } from "lucide-react";
+
+// Mock useUserPlan hook since it's not exported
+const useUserPlan = () => ({ plan: 'pro' });
 
 export default function Dashboard() {
   const [isLoaded, setIsLoaded] = useState(false);

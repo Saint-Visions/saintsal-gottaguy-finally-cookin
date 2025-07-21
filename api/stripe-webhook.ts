@@ -5,7 +5,7 @@ import { buffer } from "micro";
 
 // Initialize Stripe with secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16",
+  apiVersion: "2025-06-30.basil",
 });
 
 const supabase = createClient(
@@ -211,8 +211,8 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
       subscriptionId,
       planTier,
       status: subscription.status,
-      currentPeriodStart: new Date(subscription.current_period_start * 1000),
-      currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+      currentPeriodStart: new Date((subscription as any).current_period_start * 1000),
+      currentPeriodEnd: new Date((subscription as any).current_period_end * 1000),
     });
 
     // Provision any included agents for the new plan
@@ -290,7 +290,7 @@ async function handleSubscriptionCanceled(subscription: Stripe.Subscription) {
     await updateUserPlan(user.id, "free", null);
 
     // Disable premium features but keep agents until period end
-    await scheduleFeatureDowngrade(user.id, subscription.current_period_end);
+    await scheduleFeatureDowngrade(user.id, (subscription as any).current_period_end);
   }
 }
 
@@ -299,7 +299,7 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
   console.log(`💰 Payment succeeded for invoice: ${invoice.id}`);
 
   const customerId = invoice.customer as string;
-  const subscriptionId = invoice.subscription as string;
+  const subscriptionId = (invoice as any).subscription as string;
 
   // Update payment status and extend service
   const { data: user } = await supabase
@@ -376,7 +376,7 @@ function determinePlanTier(subscription: Stripe.Subscription): string {
 
   // Fallback: try the original logic with environment variables
   for (const [tierName, config] of Object.entries(PRICING_TIERS)) {
-    if (config.stripePriceId === priceId) {
+    if ((config as any).stripePriceId === priceId) {
       console.log(`✅ Fallback mapping ${priceId} to tier: ${tierName}`);
       return tierName;
     }

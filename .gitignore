@@ -1,3 +1,22 @@
-build/
+# 🛠 System + Editor Files
+.DS_Store
+.vscode/
+.idea/
+
+# ⚙️ Build Artifacts
+node_modules/
 dist/
-*.zip
+.next/
+.output/
+.vercel/
+build/
+package-lock.json
+
+# 🔐 Environment Variables
+.env
+.env.*.local
+
+# 🧾 Logs
+*.log
+npm-debug.log*
+.vercel

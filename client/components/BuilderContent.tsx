@@ -1,5 +1,5 @@
 import React from "react";
-import { BuilderComponent, builder } from "@builder.io/react";
+import { Content } from "@builder.io/sdk-react";
 
 // Builder should already be initialized in App.tsx via builder-init.ts
 // Don't initialize or register components here to avoid conflicts
@@ -18,11 +18,12 @@ export const BuilderContent: React.FC<BuilderContentProps> = ({
   options = {},
 }) => {
   return (
-    <BuilderComponent
+    <Content
+      apiKey={process.env.NEXT_PUBLIC_BUILDER_API_KEY!}
       model={model}
       content={content}
       data={data}
-      options={options}
+      {...options}
     />
   );
 };

@@ -445,7 +445,7 @@ export default function BrandLanding() {
                       template.recommended ? "ring-2" : "hover:border-white/20"
                     }`}
                     style={{
-                      ringColor: template.recommended
+                      ["--tw-ring-color" as any]: template.recommended
                         ? customTheme.primary
                         : "transparent",
                     }}

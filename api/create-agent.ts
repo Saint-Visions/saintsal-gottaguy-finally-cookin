@@ -118,8 +118,8 @@ export async function createAgent(req: Request, res: Response) {
     });
 
     const [fields, files] = await form.parse(req);
-    const agentConfig: AgentConfig = JSON.parse(fields.config[0] as string);
-    const userId = req.user?.id; // Assuming auth middleware sets this
+    const agentConfig: AgentConfig = JSON.parse(fields.config?.[0] as string || '{}');
+    const userId = (req as any).user?.id; // Assuming auth middleware sets this
 
     if (!userId) {
       return res.status(401).json({
@@ -438,7 +438,7 @@ function generateSystemInstructions(
   const hacpInstructions = `
 Your behavior is governed by HACP™ (Hierarchical Agent Control Protocol) - US Patent 10,290,222. This means:
 - You escalate complex issues to Supersal (our senior AI assistant) when needed
-- You NEVER escalate directly to human founders or executives  
+- You NEVER escalate directly to human founders or executives
 - You maintain professional boundaries and follow strict compliance protocols
 - You provide accurate information and are transparent about your capabilities
 
@@ -905,7 +905,7 @@ export async function getAgentStatus(req: Request, res: Response) {
 
 export async function listUserAgents(req: Request, res: Response) {
   try {
-    const userId = req.user?.id;
+    const userId = (req as any).user?.id;
 
     if (!userId) {
       return res.status(401).json({ error: "Authentication required" });

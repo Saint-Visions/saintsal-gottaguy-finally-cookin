@@ -126,7 +126,7 @@ export function domainDetectionMiddleware(
   const domain = extractDomain(hostname);
 
   // Find brand configuration
-  const brandConfig = BRAND_DOMAINS[domain];
+  const brandConfig = BRAND_DOMAINS[domain as keyof typeof BRAND_DOMAINS];
 
   if (brandConfig) {
     // Attach brand context to request
@@ -153,7 +153,7 @@ function extractDomain(hostname: string): string {
   const cleanHostname = hostname.split(":")[0];
 
   // Check for exact matches first
-  if (BRAND_DOMAINS[cleanHostname]) {
+  if (BRAND_DOMAINS[cleanHostname as keyof typeof BRAND_DOMAINS]) {
     return cleanHostname;
   }
 
@@ -398,7 +398,7 @@ export async function createBrandAgent(req: Request, res: Response) {
     await storeBrandAgent(enhancedConfig, agentSlug);
 
     // Set up brand-specific routing
-    const accessUrl = generateBrandAccessUrl(agentSlug, req.brandDomain);
+    const accessUrl = generateBrandAccessUrl(agentSlug, req.brandDomain || "");
 
     res.json({
       success: true,
@@ -534,7 +534,7 @@ async function storeBrandAgent(config: any, slug: string): Promise<void> {
 export async function getBrandConfig(req: Request, res: Response) {
   try {
     const domain = req.params.domain || req.brandDomain;
-    const brandConfig = BRAND_DOMAINS[domain];
+    const brandConfig = domain ? BRAND_DOMAINS[domain as keyof typeof BRAND_DOMAINS] : null;
 
     if (!brandConfig) {
       return res.status(404).json({ error: "Brand not found" });
@@ -561,10 +561,10 @@ export async function listBrands(req: Request, res: Response) {
       id: config.brandId,
       name: config.name,
       description: config.description,
-      specialization: config.specialization,
+      specialization: (config as any).specialization,
       theme: config.theme,
       features: config.features,
-      complianceRequired: config.complianceRequired || [],
+      complianceRequired: (config as any).complianceRequired || [],
     }));
 
     res.json({

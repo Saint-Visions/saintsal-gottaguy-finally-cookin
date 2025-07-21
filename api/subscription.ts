@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import { PRICING_TIERS, ADDON_PRICING } from "./stripe-webhook";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16",
+  apiVersion: "2025-06-30.basil",
 });
 
 const supabase = createClient(
@@ -63,7 +63,7 @@ export async function createCheckoutSession(req: Request, res: Response) {
       payment_method_types: ["card"],
       line_items: [
         {
-          price: planConfig.stripePriceId,
+          price: (planConfig as any).stripePriceId,
           quantity: 1,
         },
       ],
@@ -185,7 +185,7 @@ export async function getSubscriptionDetails(req: Request, res: Response) {
           user.stripe_subscription_id,
         );
 
-        upcomingInvoice = await stripe.invoices.retrieveUpcoming({
+        upcomingInvoice = await (stripe.invoices as any).retrieveUpcoming({
           subscription: user.stripe_subscription_id,
         });
       } catch (error) {

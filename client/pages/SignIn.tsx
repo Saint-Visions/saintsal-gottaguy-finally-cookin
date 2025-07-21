@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -51,7 +52,7 @@ export default function SignIn() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(16, 22, 28, 0.75) 100%), 
+          backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(16, 22, 28, 0.75) 100%),
                                                       url('https://cdn.builder.io/api/v1/image/assets%2F065997bd13e4442e888a08652fcd61ba%2F318002d06a1a43ddab311553a42ce777?format=webp&width=800')`,
         }}
       ></div>
@@ -310,12 +311,12 @@ export default function SignIn() {
                       />
                       <span className="text-white/70">Remember me</span>
                     </label>
-                    <a
-                      href="#"
+                    <Link
+                      to="/forgot-password"
                       className="text-gold-300 hover:text-gold-200 text-sm"
                     >
                       Forgot password?
-                    </a>
+                    </Link>
                   </div>
                 )}
 
@@ -348,13 +349,13 @@ export default function SignIn() {
                 <div className="text-center mt-6">
                   <p className="text-xs text-white/50">
                     By creating an account, you agree to our{" "}
-                    <a href="#" className="text-gold-300 hover:text-gold-200">
+                    <Link to="/terms" className="text-gold-300 hover:text-gold-200">
                       Terms of Service
-                    </a>{" "}
+                    </Link>{" "}
                     and{" "}
-                    <a href="#" className="text-gold-300 hover:text-gold-200">
+                    <Link to="/privacy" className="text-gold-300 hover:text-gold-200">
                       Privacy Policy
-                    </a>
+                    </Link>
                   </p>
                 </div>
               )}

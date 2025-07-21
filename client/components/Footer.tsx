@@ -109,36 +109,36 @@ export function Footer() {
               >
                 Help
               </Link>
-              <a
-                href="/privacy-policy"
+              <Link
+                to="/privacy"
                 className="text-white/70 hover:text-gold-300 transition-colors"
               >
                 Privacy Policy
-              </a>
-              <a
-                href="/terms-of-service"
+              </Link>
+              <Link
+                to="/terms"
                 className="text-white/70 hover:text-gold-300 transition-colors"
               >
                 Terms of Service
-              </a>
-              <a
-                href="/gdpr-compliance"
+              </Link>
+              <Link
+                to="/gdpr"
                 className="text-white/70 hover:text-gold-300 transition-colors"
               >
                 GDPR Compliance
-              </a>
-              <a
-                href="/data-processing"
+              </Link>
+              <Link
+                to="/data-processing"
                 className="text-white/70 hover:text-gold-300 transition-colors"
               >
                 Data Processing
-              </a>
-              <a
-                href="/security-policy"
+              </Link>
+              <Link
+                to="/security"
                 className="text-white/70 hover:text-gold-300 transition-colors"
               >
                 Security Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

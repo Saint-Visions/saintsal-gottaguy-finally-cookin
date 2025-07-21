@@ -311,7 +311,7 @@ async function verifySubdomainAccessMiddleware(
     }
 
     // Attach client info to request
-    req.clientConfig = config;
+    (req as any).clientConfig = config;
     next();
   } catch (error) {
     console.error("❌ Middleware access verification error:", error);
@@ -373,7 +373,7 @@ async function createSaintVisionSubdomain(
     }
   } catch (error) {
     console.error("❌ DNS creation error:", error);
-    return { success: false, error: error.message };
+    return { success: false, error: (error as any)?.message || "Unknown error" };
   }
 }
 
@@ -386,7 +386,7 @@ async function createCustomDomainRecord(
     success: true,
     instructions: {
       type: "CNAME",
-      name: "@" || "www",
+      name: "@",
       value: "saintvision.ai",
       note: "Point your domain to saintvision.ai using a CNAME record",
     },

@@ -50,10 +50,10 @@ export class SaintSalCRMIntegration {
       } else {
         throw new Error(result.error || "Failed to create contact");
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
-        message: `❌ Failed to add contact: ${error.message}`,
+        message: `❌ Failed to add contact: ${error.message || "Unknown error"}`,
       };
     }
   }
@@ -82,10 +82,10 @@ export class SaintSalCRMIntegration {
       } else {
         throw new Error(result.error || "Failed to create opportunity");
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
-        message: `❌ Failed to create opportunity: ${error.message}`,
+        message: `❌ Failed to create opportunity: ${error.message || "Unknown error"}`,
       };
     }
   }
@@ -122,10 +122,10 @@ export class SaintSalCRMIntegration {
       } else {
         throw new Error(result.error || "Failed to log conversation");
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
-        message: `❌ Failed to log conversation: ${error.message}`,
+        message: `❌ Failed to log conversation: ${error.message || "Unknown error"}`,
       };
     }
   }
@@ -157,10 +157,10 @@ export class SaintSalCRMIntegration {
       } else {
         throw new Error(result.error || "Failed to send message");
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
-        message: `❌ Failed to send message: ${error.message}`,
+        message: `❌ Failed to send message: ${error.message || "Unknown error"}`,
       };
     }
   }
@@ -171,24 +171,18 @@ export class SaintSalCRMIntegration {
   static parseAIIntent(message: string) {
     const intents = [];
 
-    // Contact creation patterns
-    if (
-      /add.*contact|create.*contact|save.*contact|new.*contact/i.test(message)
-    ) {
+    if (/add.*contact|create.*contact|save.*contact|new.*contact/i.test(message)) {
       intents.push("create_contact");
     }
 
-    // Lead qualification patterns
     if (/qualified.*lead|hot.*lead|interested.*lead/i.test(message)) {
       intents.push("create_opportunity");
     }
 
-    // Follow-up patterns
     if (/follow.*up|send.*message|contact.*them/i.test(message)) {
       intents.push("send_followup");
     }
 
-    // Meeting/appointment patterns
     if (/schedule.*meeting|book.*appointment|set.*up.*call/i.test(message)) {
       intents.push("schedule_appointment");
     }
@@ -202,7 +196,6 @@ export class SaintSalCRMIntegration {
   static extractContactInfo(message: string): Partial<CRMContact> {
     const contact: Partial<CRMContact> = {};
 
-    // Extract email
     const emailMatch = message.match(
       /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/,
     );
@@ -210,7 +203,6 @@ export class SaintSalCRMIntegration {
       contact.email = emailMatch[1];
     }
 
-    // Extract phone
     const phoneMatch = message.match(
       /(\+?1?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/,
     );
@@ -218,7 +210,6 @@ export class SaintSalCRMIntegration {
       contact.phone = phoneMatch[1];
     }
 
-    // Extract name patterns
     const nameMatch = message.match(
       /(?:name|called|contact)\s+(?:is\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
     );
@@ -239,11 +230,9 @@ export class SaintSalCRMIntegration {
  * SaintSal Boss Mode CRM Commands
  */
 export const SaintSalCRMCommands = {
-  // Quick contact creation
   addContact: async (name: string, email?: string, phone?: string) => {
     const [firstName, ...lastNameParts] = name.split(" ");
     const lastName = lastNameParts.join(" ");
-
     return await SaintSalCRMIntegration.createContactFromAI({
       firstName,
       lastName,
@@ -254,7 +243,6 @@ export const SaintSalCRMCommands = {
     });
   },
 
-  // Quick opportunity creation
   addOpportunity: async (title: string, value: number, contactId: string) => {
     return await SaintSalCRMIntegration.createOpportunityFromAI({
       title,
@@ -264,7 +252,6 @@ export const SaintSalCRMCommands = {
     });
   },
 
-  // Quick follow-up
   sendFollowUp: async (contactId: string, message: string) => {
     return await SaintSalCRMIntegration.sendFollowUpMessage(contactId, message);
   },

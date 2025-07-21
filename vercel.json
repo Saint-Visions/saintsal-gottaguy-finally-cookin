@@ -1,27 +1,23 @@
 {
-<<<<<<< HEAD
   "version": 2,
-  "builds": [
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_BUILDER_API_KEY": "065997bd13e4442e888a06852fcd61ba",
+    "NEXT_PUBLIC_SUPABASE_URL": "https://kweiqpogpqnywmhswvlf.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3ZWlxcG9ncHFueXdtaHN3dmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNjUwOTYsImV4cCI6MjA2Njk0MTA5Nn0.axMzUqE-TRAMBzdPI_qvaagQKzgIs6wasYXav9cLs6k"
+  },
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/spa"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/builder/:path*",
+      "destination": "/builder"
     }
   ]
-=======
-  "buildCommand": "npm run build:client",
-  "outputDirectory": "dist/spa",
-  "installCommand": "npm install --legacy-peer-deps"
->>>>>>> 3d2bfcac8ce24dee9ddbe56d356335bd71dcd5d8
 }
+

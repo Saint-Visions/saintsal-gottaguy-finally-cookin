@@ -36,7 +36,7 @@ async function callGHLAPI(
     return { success: true, data: result };
   } catch (error) {
     console.error("GHL API Error:", error);
-    return { success: false, error: error.message };
+    return { success: false, error: (error as any)?.message || "Unknown error" };
   }
 }
 

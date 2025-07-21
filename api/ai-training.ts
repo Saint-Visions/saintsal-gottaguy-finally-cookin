@@ -427,8 +427,8 @@ export async function getTrainingStatus(req: Request, res: Response) {
     res.json({
       sessionId,
       status: status.status,
-      progress: status.progress || 0,
-      estimatedTime: status.estimated_finish || null,
+      progress: (status as any).progress || 0,
+      estimatedTime: (status as any).estimated_finish || null,
     });
   } catch (error) {
     console.error("❌ Status check error:", error);

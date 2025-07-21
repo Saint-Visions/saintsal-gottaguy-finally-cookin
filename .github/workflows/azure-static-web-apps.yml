@@ -4,36 +4,28 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
 
 jobs:
   build_and_deploy_job:
     runs-on: ubuntu-latest
-    name: Build and Deploy
+    name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: true
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "npm"
-      - name: Install dependencies
-        run: npm ci
-      - name: Build SaintVisionAI with Builder.io
-        run: npm run build
-        env:
-          VITE_BUILDER_API_KEY: ${{ secrets.VITE_BUILDER_API_KEY }}
-          BUILDER_API_KEY: ${{ secrets.BUILDER_API_KEY }}
-      - name: Deploy to Azure Static Web Apps
+
+      - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BRAVE_CLIFF_054A8220F }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"
-          output_location: "dist/spa"
-          api_location: "azure-functions"
-          skip_app_build: true
+          #### Update these based on your folder structure:
+          #### if using Next.js: app_location: "/"
+          app_location: "/" 
+          api_location: "api"
+          output_location: "build"
 

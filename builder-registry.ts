@@ -1,11 +1,26 @@
-import { type RegisteredComponent } from "@builder.io/react";
+import { type RegisteredComponent } from "@builder.io/sdk-react";
+import dynamic from 'next/dynamic';
 
-// Static imports for custom components
-import { SaintVisionHero } from "./client/components/builder/SaintVisionHero";
-import { SaintVisionFeatureGrid } from "./client/components/builder/SaintVisionFeatureGrid";
-import { SaintVisionSecurityVault } from "./client/components/builder/SaintVisionSecurityVault";
-import { SaintVisionNavigation } from "./client/components/builder/SaintVisionNavigation";
-import { SaintVisionCTA } from "./client/components/builder/SaintVisionCTA";
+// Dynamic imports for custom components (required by Builder.io)
+const SaintVisionHero = dynamic(() => 
+  import('./client/components/builder/SaintVisionHero').then(mod => ({ default: mod.SaintVisionHero }))
+);
+
+const SaintVisionFeatureGrid = dynamic(() => 
+  import('./client/components/builder/SaintVisionFeatureGrid').then(mod => ({ default: mod.SaintVisionFeatureGrid }))
+);
+
+const SaintVisionSecurityVault = dynamic(() => 
+  import('./client/components/builder/SaintVisionSecurityVault').then(mod => ({ default: mod.SaintVisionSecurityVault }))
+);
+
+const SaintVisionNavigation = dynamic(() => 
+  import('./client/components/builder/SaintVisionNavigation').then(mod => ({ default: mod.SaintVisionNavigation }))
+);
+
+const SaintVisionCTA = dynamic(() => 
+  import('./client/components/builder/SaintVisionCTA').then(mod => ({ default: mod.SaintVisionCTA }))
+);
 
 export const customComponents: RegisteredComponent[] = [
   {
